@@ -8,6 +8,7 @@
  * @version $Id$
  * @copyright 2000-2010 Cetera labs (http://www.cetera.ru)
  * @author Igor Samarin
+ *
  **/
 
 
