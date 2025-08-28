@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<schema>
+    <table name="rss_import_list">
+        <field name="id" type="int(10) unsigned" null="0" auto_increment="1"/>
+        <field name="rss_url" type="varchar(255)" null="0"/>
+        <field name="iduser" type="int(11)" null="0" default="1"/>
+        <key name="PRIMARY" unique="1">
+            <column name="id"/>
+        </key>
+    </table>
+    <table name="rss_import_list_dirs">
+        <field name="id" type="int(10) unsigned" null="0" auto_increment="1"/>
+        <field name="idrss" type="int(11)" null="0" default="1"/>
+        <field name="idcat" type="int(11)" null="0" default="1"/>
+        <key name="PRIMARY" unique="1">
+            <column name="id"/>
+        </key>
+    </table>
+    <table name="rss_import_imported_materials">
+        <field name="id" type="int(10) unsigned" null="0" auto_increment="1"/>
+        <field name="idcat" type="int(11)" null="0"/>
+        <field name="guid" type="varchar(255)" null="0"/>
+        <field name="url" type="varchar(255)" null="0"/>
+        <field name="material_id" type="int(11)" null="0"/>
+        <field name="created_at" type="datetime" null="0" default="2000-01-01 00:00:00"/>
+        <key name="PRIMARY" unique="1">
+            <column name="id"/>
+        </key>
+    </table>
+</schema>
