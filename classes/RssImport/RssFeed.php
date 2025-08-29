@@ -69,6 +69,7 @@ class RssFeed
             $title = $entry->getTitle();
             $content = $entry->getContent();
             $enclosure = $entry->getEnclosure();
+            $description = $entry->getDescription();
             $importedImage = '';
 
             if ($enclosure) {
@@ -81,7 +82,7 @@ class RssFeed
 
             $cmsCatalog = \Cetera\Catalog::getById($cat);
             $od = $cmsCatalog->getMaterialsObjectDefinition();
-            $mData = $this->buildMaterialData($title, $content, $importedImage, $cat);
+            $mData = $this->buildMaterialData($title, $content, $description, $importedImage, $cat);
 
             try {
                 $res = \Cetera\Material::fetch($mData, $od);
@@ -99,11 +100,12 @@ class RssFeed
      * Формирует массив данных для материала.
      * @param string $title
      * @param string $content
+     * @param string $description
      * @param string $importedImage
      * @param int $cat
      * @return array
      */
-    private function buildMaterialData(string $title, string $content, string $importedImage, int $cat): array
+    private function buildMaterialData(string $title, string $content, string $description, string $importedImage, int $cat): array
     {
         return [
             'publish' => true,
@@ -114,7 +116,8 @@ class RssFeed
             'name' => $title,
             'alias' => strtolower(translit($title)),
             'pic' => $importedImage,
-            'text' => $content
+            'text' => $content,
+            'short' => $description
         ];
     }
 }
