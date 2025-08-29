@@ -78,6 +78,27 @@ switch ($action) {
         \RssImport\Utils::respondAndExit($res);
         break;
 
+
+    case 'delete':
+    {
+
+        $imported = $application->getConn()->fetchAssoc('SELECT * FROM rss_import_imported_materials WHERE id=' . $id);
+
+        $mId = $imported['material_id'];
+        $catId = $imported['idcat'];
+
+        $catalog = \Cetera\Catalog::getById($catId);
+        $material = \Cetera\Material::getById($mId, $catalog->getMaterialsObjectDefinition());
+
+        if ($material) {
+            $material->delete();
+            $application->getConn()->executeQuery('DELETE FROM rss_import_imported_materials WHERE id=' . $id);
+            $res['success'] = true;
+        }
+        \RssImport\Utils::respondAndExit($res);
+        break;
+    }
+
     default:
         $res['errors'][] = 'Unknown action';
         \RssImport\Utils::respondAndExit($res);

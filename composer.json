@@ -3,7 +3,7 @@
     "description": "Импорт RSS",
     "type": "cetera-cms-plugin",
     "license": "MIT",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "require": {
         "laminas/laminas-feed": "^2.15",
         "ext-simplexml": "*"
